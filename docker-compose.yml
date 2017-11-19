@@ -1,0 +1,18 @@
+version: '2'
+services:
+   tensorflow:
+     image: tensorflow/tensorflow:latest
+     container_name: tensorflow
+     ports:
+       - 8888:8888
+     volumes: 
+      - ${PWD}/notebooks:/notebooks
+   tensorboard:
+     image: tensorflow/tensorflow:latest
+     container_name: tensorboard
+     command: tensorboard --logdir=./logs
+     ports:
+       - 6006:6006
+     volumes_from:
+       - tensorflow
+
